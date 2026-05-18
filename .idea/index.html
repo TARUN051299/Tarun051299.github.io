@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Pala Tarun Kumar | Java Backend Developer</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+        *{
+          margin:0;
+          padding:0;
+          box-sizing:border-box;
+          scroll-behavior:smooth;
+        }
+
+        :root{
+          --bg:#0a0a0f;
+          --bg2:#11111c;
+          --card:#151524;
+          --purple:#8b5cf6;
+          --purple-light:#a78bfa;
+          --border:rgba(139,92,246,0.2);
+          --text:#ffffff;
+          --text2:#b3b3c3;
+          --text3:#6b7280;
+          --green:#22c55e;
+        }
+
+        body{
+          background:var(--bg);
+          color:var(--text);
+          font-family:Arial, Helvetica, sans-serif;
+          overflow-x:hidden;
+        }
+
+        a{
+          text-decoration:none;
+          color:inherit;
+        }
+
+        section{
+          padding:90px 8%;
+        }
+
+        /* NAVBAR */
+
+        nav{
+          position:fixed;
+          top:0;
+          left:0;
+          width:100%;
+          height:70px;
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          padding:0 8%;
+          background:rgba(10,10,15,0.95);
+          border-bottom:1px solid var(--border);
+          z-index:1000;
+          backdrop-filter:blur(12px);
+        }
+
+        .logo{
+          font-size:1.3rem;
+          color:var(--purple-light);
+          font-weight:bold;
+        }
+
+        nav ul{
+          display:flex;
+          list-style:none;
+          gap:30px;
+        }
+
+        nav ul li a{
+          color:var(--text2);
+          font-size:14px;
+          transition:0.3s;
+        }
+
+        nav ul li a:hover{
+          color:var(--purple-light);
+        }
+
+        .nav-icons{
+          display:flex;
+          gap:15px;
+        }
+
+        .nav-icons a{
+          color:var(--text2);
+          font-size:18px;
+          transition:0.3s;
+        }
+
+        .nav-icons a:hover{
+          color:var(--purple-light);
+        }
+
+        /* HERO */
+
+        .hero{
+          min-height:100vh;
+          display:flex;
+          align-items:center;
+          position:relative;
+          overflow:hidden;
+        }
+
+        .hero::before{
+          content:"";
+          position:absolute;
+          width:600px;
+          height:600px;
+          background:radial-gradient(circle, rgba(139,92,246,0.18), transparent 70%);
+          top:-200px;
+          left:-200px;
+        }
+
+        .hero-content{
+          max-width:700px;
+          z-index:2;
+        }
+
+        .badge{
+          display:inline-flex;
+          align-items:center;
+          gap:10px;
+          background:rgba(139,92,246,0.15);
+          padding:10px 18px;
+          border-radius:40px;
+          border:1px solid var(--border);
+          color:var(--purple-light);
+          margin-bottom:25px;
+          font-size:14px;
+        }
+
+        .dot{
+          width:10px;
+          height:10px;
+          border-radius:50%;
+          background:var(--green);
+          animation:pulse 2s infinite;
+        }
+
+        @keyframes pulse{
+          0%{opacity:1;}
+          50%{opacity:0.4;}
+          100%{opacity:1;}
+        }
+
+        .hero h1{
+          font-size:70px;
+          line-height:1.1;
+          margin-bottom:20px;
+        }
+
+        .hero h1 span{
+          color:var(--purple-light);
+        }
+
+        .hero p{
+          color:var(--text2);
+          font-size:18px;
+          line-height:1.7;
+          margin-bottom:35px;
+        }
+
+        .hero-buttons{
+          display:flex;
+          gap:20px;
+          flex-wrap:wrap;
+        }
+
+        .btn{
+          padding:14px 28px;
+          border-radius:10px;
+          font-weight:bold;
+          transition:0.3s;
+        }
+
+        .btn-primary{
+          background:var(--purple);
+          color:white;
+        }
+
+        .btn-primary:hover{
+          transform:translateY(-3px);
+          background:var(--purple-light);
+        }
+
+        .btn-outline{
+          border:1px solid var(--border);
+          color:white;
+        }
+
+        .btn-outline:hover{
+          background:rgba(139,92,246,0.15);
+        }
+
+        /* TITLES */
+
+        .section-label{
+          color:var(--purple);
+          text-transform:uppercase;
+          letter-spacing:2px;
+          margin-bottom:10px;
+          font-size:14px;
+          font-weight:bold;
+        }
+
+        .section-title{
+          font-size:42px;
+          margin-bottom:50px;
+        }
+
+        /* ABOUT */
+
+        .about-grid{
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          gap:40px;
+        }
+
+        .about-text p{
+          color:var(--text2);
+          margin-bottom:20px;
+          line-height:1.8;
+        }
+
+        .about-cards{
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          gap:20px;
+        }
+
+        .card{
+          background:var(--card);
+          border:1px solid var(--border);
+          padding:25px;
+          border-radius:16px;
+          transition:0.3s;
+        }
+
+        .card:hover{
+          transform:translateY(-5px);
+          border-color:var(--purple-light);
+        }
+
+        .card i{
+          color:var(--purple-light);
+          font-size:28px;
+          margin-bottom:15px;
+        }
+
+        .card h3{
+          margin-bottom:10px;
+        }
+
+        .card p{
+          color:var(--text3);
+          line-height:1.6;
+        }
+
+        /* SKILLS */
+
+        .skills-grid{
+          display:grid;
+          grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+          gap:20px;
+        }
+
+        .skill{
+          background:var(--card);
+          border:1px solid var(--border);
+          border-radius:16px;
+          padding:30px 20px;
+          text-align:center;
+          transition:0.3s;
+        }
+
+        .skill:hover{
+          transform:translateY(-5px);
+          border-color:var(--purple-light);
+        }
+
+        .skill i{
+          font-size:40px;
+          margin-bottom:15px;
+          color:var(--purple-light);
+        }
+
+        .skill h3{
+          font-size:18px;
+        }
+
+        /* PROJECTS */
+
+        .projects-grid{
+          display:grid;
+          grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+          gap:25px;
+        }
+
+        .project{
+          background:var(--card);
+          border:1px solid var(--border);
+          border-radius:18px;
+          padding:25px;
+          transition:0.3s;
+        }
+
+        .project:hover{
+          transform:translateY(-5px);
+          border-color:var(--purple-light);
+        }
+
+        .project-top{
+          display:flex;
+          justify-content:space-between;
+          margin-bottom:20px;
+        }
+
+        .project-links{
+          display:flex;
+          gap:10px;
+        }
+
+        .project-links a{
+          width:38px;
+          height:38px;
+          border-radius:10px;
+          background:rgba(139,92,246,0.15);
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          color:var(--purple-light);
+        }
+
+        .project h3{
+          margin-bottom:15px;
+        }
+
+        .project p{
+          color:var(--text2);
+          line-height:1.7;
+          margin-bottom:20px;
+        }
+
+        .tags{
+          display:flex;
+          flex-wrap:wrap;
+          gap:10px;
+        }
+
+        .tag{
+          background:rgba(139,92,246,0.15);
+          color:var(--purple-light);
+          padding:8px 14px;
+          border-radius:30px;
+          font-size:13px;
+          border:1px solid var(--border);
+        }
+
+        /* EDUCATION */
+
+        .edu-card{
+          background:var(--card);
+          border:1px solid var(--border);
+          border-radius:18px;
+          padding:30px;
+          margin-bottom:25px;
+        }
+
+        .edu-card h3{
+          margin-bottom:10px;
+        }
+
+        .edu-card p{
+          color:var(--text2);
+          line-height:1.8;
+        }
+
+        /* CONTACT */
+
+        .contact{
+          text-align:center;
+        }
+
+        .contact p{
+          max-width:700px;
+          margin:auto;
+          color:var(--text2);
+          line-height:1.8;
+          margin-bottom:35px;
+        }
+
+        .contact-links{
+          display:flex;
+          justify-content:center;
+          flex-wrap:wrap;
+          gap:20px;
+        }
+
+        .contact-links a{
+          padding:14px 24px;
+          border-radius:12px;
+          background:var(--card);
+          border:1px solid var(--border);
+          transition:0.3s;
+        }
+
+        .contact-links a:hover{
+          background:rgba(139,92,246,0.15);
+          border-color:var(--purple-light);
+        }
+
+        footer{
+          border-top:1px solid var(--border);
+          padding:30px 8%;
+          text-align:center;
+          color:var(--text3);
+        }
+
+        @media(max-width:900px){
+
+          .hero h1{
+            font-size:48px;
+          }
+
+          .about-grid{
+            grid-template-columns:1fr;
+          }
+
+          nav ul{
+            display:none;
+          }
+        }
+
+        @media(max-width:600px){
+
+          .hero h1{
+            font-size:38px;
+          }
+
+          .hero-buttons{
+            flex-direction:column;
+          }
+
+          .about-cards{
+            grid-template-columns:1fr;
+          }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+    <div class="logo">&lt;PTK/&gt;</div>
+
+    <ul>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#skills">SKILLS</a></li>
+        <li><a href="#projects">PROJECTS</a></li>
+        <li><a href="#education">EDUCATION</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+    </ul>
+
+    <div class="nav-icons">
+        <a href="mailto:tarunp7672@gmail.com">
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+
+        <a href="https://github.com/" target="_blank">
+            <i class="fa-brands fa-github"></i>
+        </a>
+
+        <a href="https://linkedin.com/in/pala-tarunkumar-9b10401b0" target="_blank">
+            <i class="fa-brands fa-linkedin"></i>
+        </a>
+    </div>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            <div class="dot"></div>
+            Open for Java Developer Opportunities
+        </div>
+
+        <h1>
+            Hi, I'm <span>Pala Tarun Kumar</span>
+        </h1>
+
+        <p>
+            Java Backend Developer skilled in Java, Spring Boot, PostgreSQL, REST APIs,
+            and scalable backend application development with strong problem-solving skills.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">
+                View Projects
+            </a>
+
+            <a href="#contact" class="btn btn-outline">
+                Contact Me
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="section-label">WHO I AM</div>
+    <h2 class="section-title">About Me</h2>
+
+    <div class="about-grid">
+
+        <div class="about-text">
+
+            <p>
+                Computer Science graduate with strong knowledge of Java, Spring Boot,
+                Object-Oriented Programming, PostgreSQL, and REST API development.
+            </p>
+
+            <p>
+                Passionate about building scalable backend systems and solving real-world
+                software problems using clean architecture and efficient coding practices.
+            </p>
+
+            <p>
+                Strong understanding of layered architecture including Controller,
+                Service, Repository, DTO, and Entity patterns.
+            </p>
+
+        </div>
+
+        <div class="about-cards">
+
+            <div class="card">
+                <i class="fa-solid fa-code"></i>
+                <h3>Backend Development</h3>
+                <p>Building scalable Spring Boot REST APIs and secure backend systems.</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-database"></i>
+                <h3>Database Design</h3>
+                <p>Strong understanding of PostgreSQL and Hibernate/JPA operations.</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-server"></i>
+                <h3>REST APIs</h3>
+                <p>Creating clean, secure and reusable RESTful services.</p>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+    <div class="section-label">WHAT I KNOW</div>
+    <h2 class="section-title">Technical Skills</h2>
+
+    <div class="skills-grid">
+
+        <div class="skill">
+            <i class="fa-brands fa-java"></i>
+            <h3>Java</h3>
+        </div>
+
+        <div class="skill">
+            <i class="fa-solid fa-leaf"></i>
+            <h3>Spring Boot</h3>
+        </div>
+
+        <div class="skill">
+            <i class="fa-solid fa-database"></i>
+            <h3>PostgreSQL</h3>
+        </div>
+
+        <div class="skill">
+            <i class="fa-solid fa-code"></i>
+            <h3>REST APIs</h3>
+        </div>
+
+        <div class="skill">
+            <i class="fa-solid fa-layer-group"></i>
+            <h3>Hibernate / JPA</h3>
+        </div>
+
+        <div class="skill">
+            <i class="fa-brands fa-git-alt"></i>
+            <h3>Git</h3>
+        </div>
+
+        <div class="skill">
+            <i class="fa-solid fa-laptop-code"></i>
+            <h3>VS Code</h3>
+        </div>
+
+        <div class="skill">
+            <i class="fa-solid fa-terminal"></i>
+            <h3>IntelliJ IDEA</h3>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+    <div class="section-label">WHAT I'VE BUILT</div>
+    <h2 class="section-title">Projects</h2>
+
+    <div class="projects-grid">
+
+        <div class="project">
+
+            <div class="project-top">
+
+                <h3>Banking Backend Application</h3>
+
+                <div class="project-links">
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+
+            </div>
+
+            <p>
+                Developed a backend banking system using Java, Spring Boot, PostgreSQL,
+                and Hibernate with secure fund transfer and account management features.
+            </p>
+
+            <div class="tags">
+                <span class="tag">Java</span>
+                <span class="tag">Spring Boot</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">REST API</span>
+                <span class="tag">Hibernate</span>
+            </div>
+
+        </div>
+
+        <div class="project">
+
+            <div class="project-top">
+
+                <h3>Movie Ticket Booking System</h3>
+
+                <div class="project-links">
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+
+            </div>
+
+            <p>
+                Built a movie ticket booking backend application with session-based
+                authentication, seat booking, movie scheduling, and booking history.
+            </p>
+
+            <div class="tags">
+                <span class="tag">Spring Boot</span>
+                <span class="tag">Java</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">Swagger</span>
+                <span class="tag">Postman</span>
+            </div>
+
+        </div>
+
+        <div class="project">
+
+            <div class="project-top">
+
+                <h3>IoT Weather Monitoring System</h3>
+
+                <div class="project-links">
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+
+            </div>
+
+            <p>
+                Real-time weather and pollution monitoring system using Arduino Uno,
+                NodeMCU ESP8266 and live dashboard data visualization.
+            </p>
+
+            <div class="tags">
+                <span class="tag">IoT</span>
+                <span class="tag">Arduino</span>
+                <span class="tag">ESP8266</span>
+                <span class="tag">Sensors</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- EDUCATION -->
+
+<section id="education">
+
+    <div class="section-label">ACADEMICS</div>
+    <h2 class="section-title">Education</h2>
+
+    <div class="edu-card">
+        <h3>B.Tech – Computer Science Engineering (IoT)</h3>
+        <p>
+            Parvathareddy Babul Reddy Visvodaya Institute of Technology and Science
+            <br/>
+            2022 – 2025
+        </p>
+    </div>
+
+    <div class="edu-card">
+        <h3>Diploma – Mechanical Engineering</h3>
+        <p>
+            Government Polytechnic College – Nellore
+            <br/>
+            2015 – 2022
+        </p>
+    </div>
+
+    <div class="edu-card">
+        <h3>SSC</h3>
+        <p>
+            Rathnam High School
+            <br/>
+            2014 – 2015
+        </p>
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+    <div class="section-label">LET'S CONNECT</div>
+    <h2 class="section-title">Get In Touch</h2>
+
+    <p>
+        I'm actively looking for Java Full Stack Developer opportunities and open
+        to internships, backend development roles, and collaborative projects.
+    </p>
+
+    <div class="contact-links">
+
+        <a href="mailto:tarunp7672@gmail.com">
+            <i class="fa-solid fa-envelope"></i>
+            tarunp7672@gmail.com
+        </a>
+
+        <a href="tel:+918074687672">
+            <i class="fa-solid fa-phone"></i>
+            +91 8074687672
+        </a>
+
+        <a href="https://linkedin.com/in/pala-tarunkumar-9b10401b0" target="_blank">
+            <i class="fa-brands fa-linkedin"></i>
+            LinkedIn
+        </a>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <p>
+        © 2026 Pala Tarun Kumar | Java Full Stack Developer
+    </p>
+
+</footer>
+
+</body>
+</html>
